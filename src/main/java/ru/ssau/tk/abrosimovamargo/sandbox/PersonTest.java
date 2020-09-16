@@ -1,7 +1,7 @@
 package ru.ssau.tk.abrosimovamargo.sandbox;
 
 import static org.testng.Assert.*;
-
+import java.util.Date;
 public class PersonTest {
     public String name;
     public double height;
