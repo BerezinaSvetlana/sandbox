@@ -7,7 +7,7 @@ public class Person {
     public String name;
     public double height;
     public double weight;
-    public Date birtday;
+    public Date birthday;
 
 
 }
