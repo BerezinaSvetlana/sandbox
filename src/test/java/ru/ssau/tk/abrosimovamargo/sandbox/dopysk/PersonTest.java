@@ -17,14 +17,14 @@ public class PersonTest {
 
     @Test
     public void testGetHeight() {
-        assertEquals(Berezina.height, 172 );
-        assertEquals(Abrosimova.height, 158);
+        assertEquals(Berezina.height, 172.0);
+        assertEquals(Abrosimova.height, 158.0);
     }
 
     @Test
     public void testGetWeight() {
-        assertEquals(Berezina.weight, 70);
-        assertEquals(Abrosimova.weight, 44);
+        assertEquals(Berezina.weight, 70.0);
+        assertEquals(Abrosimova.weight, 44.0);
     }
 
     @Test
