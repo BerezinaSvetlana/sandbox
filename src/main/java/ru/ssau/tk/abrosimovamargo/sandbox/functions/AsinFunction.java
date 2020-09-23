@@ -1,10 +1,8 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
-public class IdentityFunction implements MathFunction {
-
+public class AsinFunction implements MathFunction {
     @Override
     public double apply(double x) {
-        return x;
+        return (Math.asin(x));
     }
-
 }
