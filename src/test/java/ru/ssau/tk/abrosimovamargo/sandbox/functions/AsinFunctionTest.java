@@ -9,7 +9,6 @@ public class AsinFunctionTest {
 
     @Test
     public void testApply() {
-
         MathFunction test = new AsinFunction();
         assertEquals(test.apply(0), 0.0, DELTA);
         assertEquals(test.apply(1), Math.PI / 2, DELTA);
