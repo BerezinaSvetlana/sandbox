@@ -8,8 +8,9 @@ public class CeilFunctionTest {
 
     @Test
     public void testApply() {
-        CeilFunction test = new CeilFunction();
+        MathFunction test = new CeilFunction();
         assertEquals(test.apply(4.66), 5.0);
         assertEquals(test.apply(-4.66), -4.0);
+        assertEquals(test.apply(-4), -4.0);
     }
 }

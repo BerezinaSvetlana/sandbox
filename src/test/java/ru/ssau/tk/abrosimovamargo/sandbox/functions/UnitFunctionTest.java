@@ -10,10 +10,12 @@ public class UnitFunctionTest {
     @Test
     public void testApply() {
         assertEquals(testFunction.apply(123.123), 1.0);
+        assertNotEquals(testFunction.apply(123.123), 1.12);
+        assertNotEquals(testFunction.apply(123.123), 0.0);
     }
 
     @Test
-    public void testGetConctant() {
-        assertEquals(testFunction.getConctant(), 1.0);
+    public void testGetConstant() {
+        assertEquals(testFunction.getConstant(), 1.0);
     }
 }

@@ -9,7 +9,7 @@ public class ConstantFunction implements MathFunction {
     public double apply(double x) {
         return y;
     }
-    public double getConctant() {
+    public double getConstant() {
         return y;
     }
 }

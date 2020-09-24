@@ -10,10 +10,12 @@ public class ConstantFunctionTest {
     @Test
     public void testApply() {
         assertEquals(testFunction.apply(123.123), 123.123);
+        assertNotEquals(testFunction.apply(123.123), 1.23);
+        assertEquals(testFunction.apply(123.123), 12.123);
     }
 
     @Test
-    public void testGetConctant() {
-        assertEquals(testFunction.getConctant(), 123.123);
+    public void testGetConstant() {
+        assertEquals(testFunction.getConstant(), 123.123);
     }
 }

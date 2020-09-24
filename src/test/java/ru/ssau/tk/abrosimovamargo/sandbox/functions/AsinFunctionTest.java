@@ -5,13 +5,14 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class AsinFunctionTest {
+    private final double DELTA = 0.0001;
 
     @Test
     public void testApply() {
 
-        AsinFunction test = new AsinFunction();
-        assertEquals(test.apply(0),0.0);
-        assertEquals(test.apply(1),Math.PI / 2);
-        assertEquals(test.apply(-1),- Math.PI / 2);
+        MathFunction test = new AsinFunction();
+        assertEquals(test.apply(0), 0.0, DELTA);
+        assertEquals(test.apply(1), Math.PI / 2, DELTA);
+        assertEquals(test.apply(-1), -Math.PI / 2, DELTA);
     }
 }
