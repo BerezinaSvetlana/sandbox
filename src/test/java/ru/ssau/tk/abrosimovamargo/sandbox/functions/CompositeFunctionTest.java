@@ -21,6 +21,6 @@ public class CompositeFunctionTest {
         double result = sqrFunction.andThen(asinFunction).apply(0.0);
         assertEquals(result, 0.0, DELTA);
         double result1 = sqrFunction.andThen(asinFunction).apply(0.5);
-        assertEquals(result1, Math.pow(Math.PI/6,2), DELTA);
+        assertEquals(result1, 0.25268, DELTA);
     }
 }
