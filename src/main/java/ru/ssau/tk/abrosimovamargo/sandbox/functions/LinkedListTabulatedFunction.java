@@ -1,6 +1,14 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
+
+    protected class Node {
+        public double x;
+        public double y;
+        public Node prev;
+        public Node next;
+    }
+
     @Override
     int floorIndexOfX(double x) {
         return 0;
