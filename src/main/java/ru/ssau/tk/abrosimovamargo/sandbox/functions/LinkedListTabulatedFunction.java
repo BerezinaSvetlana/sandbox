@@ -3,6 +3,7 @@ package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
 
     private int count = 0;
+    private Node head;
 
     protected class Node {
         public double x;
