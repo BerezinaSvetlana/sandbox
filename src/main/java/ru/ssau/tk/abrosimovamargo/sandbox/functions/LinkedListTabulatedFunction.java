@@ -72,8 +72,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
         return null;
     }
 
-
-
     @Override
     int floorIndexOfX(double x) {
         return 0;
@@ -101,17 +99,17 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
 
     @Override
     public double getX(int index) {
-        return 0;
+        return getNode(index).x;
     }
 
     @Override
     public double getY(int index) {
-        return 0;
+        return getNode(index).y;
     }
 
     @Override
     public void setY(int index, double value) {
-
+        getNode(index).y = value;
     }
 
     @Override
