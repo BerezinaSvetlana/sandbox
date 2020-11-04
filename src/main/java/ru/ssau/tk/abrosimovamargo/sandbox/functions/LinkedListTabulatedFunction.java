@@ -114,12 +114,26 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
 
     @Override
     public int indexOfX(double x) {
-        return 0;
+        Node indexNode = head;
+        for (int i = 0; i < count; i++) {
+            if (indexNode.x == x) {
+                return i;
+            }
+            indexNode = indexNode.next;
+        }
+        return -1;
     }
 
     @Override
     public int indexOfY(double y) {
-        return 0;
+        Node indexNode = head;
+        for (int i = 0; i < count; i++) {
+            if (indexNode.y == y) {
+                return i;
+            }
+            indexNode = indexNode.next;
+        }
+        return -1;
     }
 
     @Override
