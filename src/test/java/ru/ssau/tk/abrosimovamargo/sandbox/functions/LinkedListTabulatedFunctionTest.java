@@ -105,21 +105,23 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testSetY() {
+        LinkedListTabulatedFunction testListArray = getListOfArray();
+        testListArray.setY(2, 60);
+        assertEquals(testListArray.getY(2), 60, DELTA);
     }
 
     @Test
     public void testIndexOfX() {
+        assertEquals(getListOfArray().indexOfX(3), 2);
+        assertEquals(getListOfMathFunction().indexOfX(5), 0);
+        assertEquals(getListOfArray().indexOfX(50), -1);
     }
 
     @Test
     public void testIndexOfY() {
+        assertEquals(getListOfArray().indexOfY(6), -1);
+        assertNotEquals(getListOfArray().indexOfY(6), 1);
+        assertEquals(getListOfMathFunction().indexOfY(3), -1);
     }
 
-    @Test
-    public void testLeftBound() {
-    }
-
-    @Test
-    public void testRightBound() {
-    }
 }
