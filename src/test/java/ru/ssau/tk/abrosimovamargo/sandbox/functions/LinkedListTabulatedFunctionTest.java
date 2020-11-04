@@ -31,6 +31,17 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testFloorIndexOfX() {
+        assertEquals(getListOfArray().floorIndexOfX(5), 3);
+        assertEquals(getListOfMathFunction().floorIndexOfX(66), 30);
+        assertThrows(IllegalArgumentException.class, () -> {
+            getListOfArray().floorIndexOfX(-13);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            getListOfArray().floorIndexOfX(-66);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            getListOfArray().floorIndexOfX(-666);
+        });
     }
 
     @Test
