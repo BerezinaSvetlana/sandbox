@@ -33,7 +33,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
-
         for (int i = 0; i < xValues.length; i++) {
             this.addNode(xValues[i], yValues[i]);
         }
@@ -48,6 +47,29 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
             xValues[i] = xValues[i - 1] + step;
             this.addNode(xValues[i], source.apply(xValues[i]));
         }
+    }
+
+    private Node getNode(int index) {
+        Node indexNode;
+        if (index <= (count / 2)) {
+            indexNode = head;
+            for (int i = 0; i < count; i++) {
+                if (i == index) {
+                    return indexNode;
+                } else {
+                    indexNode = indexNode.next;
+                }
+            }
+        } else {
+            indexNode = head.prev;
+            for (int i = count - 1; i > 0; i--) {
+                if (i == index) {
+                    return indexNode;
+                }
+                indexNode = indexNode.prev;
+            }
+        }
+        return null;
     }
 
 
