@@ -1,5 +1,7 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
+import java.util.Arrays;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
 
     private int count = 0;
@@ -30,9 +32,28 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
         count += 1;
     }
 
+    public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+
+        for (int i = 0; i < xValues.length; i++) {
+            this.addNode(xValues[i], yValues[i]);
+        }
+    }
+
+    public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        double[] xValues = new double[count];
+        xValues[0] = xFrom;
+        final double step = (xTo - xFrom) / (count - 1);
+        this.addNode(xValues[0], source.apply(xValues[0]));
+        for (int i = 1; i <= (count - 1); i++) {
+            xValues[i] = xValues[i - 1] + step;
+            this.addNode(xValues[i], source.apply(xValues[i]));
+        }
+    }
+
+
 
     @Override
-    int floNorIndexOfX(double x) {
+    int floorIndexOfX(double x) {
         return 0;
     }
 
