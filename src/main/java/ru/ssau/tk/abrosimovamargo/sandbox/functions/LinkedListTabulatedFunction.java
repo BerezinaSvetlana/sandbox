@@ -12,8 +12,27 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
         public Node next;
     }
 
+    public void addNode(double x, double y) {
+        Node newNode = new Node();
+        newNode.x = x;
+        newNode.y = y;
+        if (head == null) {
+            head = newNode;
+            newNode.prev = newNode;
+            newNode.next = newNode;
+        } else {
+            Node last = head.prev;
+            newNode.prev = last;
+            newNode.next = head;
+            head.prev = newNode;
+            last.next = newNode;
+        }
+        count += 1;
+    }
+
+
     @Override
-    int floorIndexOfX(double x) {
+    int floNorIndexOfX(double x) {
         return 0;
     }
 
