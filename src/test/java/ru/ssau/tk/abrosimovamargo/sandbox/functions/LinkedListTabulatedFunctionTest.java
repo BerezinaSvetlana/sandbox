@@ -46,10 +46,16 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testExtrapolateLeft() {
+        assertEquals(getListOfArray().extrapolateLeft(11), 0, DELTA);
+        assertEquals(getListOfMathFunction().extrapolateLeft(4), 0, DELTA);
+        assertNotEquals(getListOfMathFunction().extrapolateLeft(4), 1, DELTA);
     }
 
     @Test
     public void testExtrapolateRight() {
+        assertEquals(getListOfArray().extrapolateRight(11), 0, DELTA);
+        assertEquals(getListOfMathFunction().extrapolateRight(4), 0, DELTA);
+        assertNotEquals(getListOfMathFunction().extrapolateRight(4), 1, DELTA);
     }
 
     @Test
