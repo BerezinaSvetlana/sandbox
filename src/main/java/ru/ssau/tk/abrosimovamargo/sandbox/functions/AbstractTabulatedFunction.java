@@ -10,7 +10,7 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
         return leftY+(rightY-leftY)*(x-leftX)/(rightX-leftY);
     }
 
-    public double apply(double x){
+    public double apply(double x) {
         if (x < leftBound()) {
             return extrapolateLeft(x);
         } else if (x > rightBound()) {
