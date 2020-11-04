@@ -96,7 +96,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
 
     @Override
     public int getCount() {
-        return 0;
+        return count;
     }
 
     @Override
@@ -126,11 +126,11 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
 
     @Override
     public double leftBound() {
-        return 0;
+        return head.x;
     }
 
     @Override
     public double rightBound() {
-        return 0;
+        return head.prev.x;
     }
 }
