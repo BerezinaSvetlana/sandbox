@@ -74,7 +74,21 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
 
     @Override
     int floorIndexOfX(double x) {
-        return 0;
+        if (x < head.x) {
+            throw new IllegalArgumentException("X is less than the left border");
+        }
+        Node indexNode = head;
+        for (int i = 0; i < count; i++) {
+            if (indexNode.x < x) {
+                indexNode = indexNode.next;
+            } else {
+                if (i == 0) {
+                    return 0;
+                }
+                return i - 1;
+            }
+        }
+        return count;
     }
 
     @Override
