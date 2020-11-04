@@ -6,18 +6,31 @@ import static org.testng.Assert.*;
 
 public class LinkedListTabulatedFunctionTest {
     final double DELTA = 0.0001;
-        private final double[] xValues = new double[]{1, 2, 3, 4, 5};
-        private final double[] yValues = new double[]{11, 22, 33, 44, 55};
-        private final MathFunction testFunction = new SqrFunction();
 
-        private LinkedListTabulatedFunction getListOfArray() {
+    private final double[] xValues = new double[]{1, 2, 3, 4, 5};
+    private final double[] yValues = new double[]{11, 22, 33, 44, 55};
+    private final MathFunction sqr = new SqrFunction();
+    private final MathFunction testFunction = new SqrFunction();
 
-            return new LinkedListTabulatedFunction(xValues, yValues);
-        }
+    private LinkedListTabulatedFunction getListOfArray() {
+        return new LinkedListTabulatedFunction(xValues, yValues);
+    }
 
-        private LinkedListTabulatedFunction getListOfMathFunction() {
-            return new LinkedListTabulatedFunction(testFunction, 5, 15, 30);
-        }
+    private LinkedListTabulatedFunction getListOfMathFunction() {
+        return new LinkedListTabulatedFunction(testFunction, 5, 15, 30);
+    }
+
+    private LinkedListTabulatedFunction getArrayListFunction() {
+        return new LinkedListTabulatedFunction(xValues, yValues);
+    }
+
+    private LinkedListTabulatedFunction getListFunction() {
+        return new LinkedListTabulatedFunction(sqr, 1, 9, 5);
+    }
+
+    private LinkedListTabulatedFunction getFunction() {
+        return new LinkedListTabulatedFunction(sqr, -2, 2, 5);
+    }
 
     @Test
     public void testGetNode() {
@@ -64,14 +77,30 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testGetCount() {
+        assertEquals(getListOfArray().getCount(), 5, DELTA);
+        assertNotEquals(getListOfMathFunction().getCount(), 60, DELTA);
     }
 
     @Test
     public void testGetX() {
+        assertEquals(getListOfArray().getX(1), 2, DELTA);
+        assertEquals(getListOfMathFunction().getX(1), 5.3448275, DELTA);
+        assertEquals(getListOfMathFunction().getX(5), 6.7241379, DELTA);
     }
 
     @Test
     public void testGetY() {
+        assertEquals(getListOfArray().getY(0), 11, DELTA);
+        assertEquals(getListOfMathFunction().getY(0), 25, DELTA);
+        assertThrows(IllegalArgumentException.class, () -> {
+            getListOfArray().floorIndexOfX(-13);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            getListOfArray().floorIndexOfX(-66);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            getListOfArray().floorIndexOfX(-13);
+        });
     }
 
     @Test
