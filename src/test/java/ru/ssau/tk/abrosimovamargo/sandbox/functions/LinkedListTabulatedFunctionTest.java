@@ -26,7 +26,7 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(getListOfArray().getX(2), 3, DELTA);
         assertEquals(getListOfArray().getX(3), 4, DELTA);
         assertEquals(getListOfArray().getX(4), 5, DELTA);
-
+        assertNotEquals(getListOfArray().getX(4), 4, DELTA);
     }
 
     @Test
