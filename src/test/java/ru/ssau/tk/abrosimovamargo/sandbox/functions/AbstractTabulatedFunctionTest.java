@@ -12,7 +12,7 @@ public class AbstractTabulatedFunctionTest {
 
         final double delta = 0.0001;
         assertEquals(mockedInterpolate.interpolate(1.5, 1.0, 2.0, 3.0, 4.0), 2.5, delta);
-       }
+    }
 
     @Test
     public void testApply() {

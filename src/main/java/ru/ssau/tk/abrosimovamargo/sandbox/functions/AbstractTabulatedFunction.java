@@ -2,12 +2,15 @@ package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
     abstract int floorIndexOfX(double x);
+
     abstract double extrapolateLeft(double x);
+
     abstract double extrapolateRight(double x);
+
     abstract double interpolate(double x, int floorIndex);
 
-    protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY){
-        return leftY+(rightY-leftY)*(x-leftX)/(rightX-leftY);
+    protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
+        return leftY + (rightY - leftY) * (x - leftX) / (rightX - leftY);
     }
 
     public double apply(double x) {

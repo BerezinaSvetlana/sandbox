@@ -2,7 +2,7 @@ package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
 import java.util.Arrays;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction{
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private int count = 0;
     private Node head;

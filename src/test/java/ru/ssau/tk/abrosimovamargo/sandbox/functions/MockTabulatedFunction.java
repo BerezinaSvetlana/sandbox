@@ -1,6 +1,6 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
-public class MockTabulatedFunction extends AbstractTabulatedFunction{
+public class MockTabulatedFunction extends AbstractTabulatedFunction {
     private static final double x0 = 1.0;
     private static final double x1 = 2.0;
     private static final double y0 = 3.0;
