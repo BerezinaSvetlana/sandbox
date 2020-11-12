@@ -112,9 +112,22 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testIndexOfX() {
+        final LinkedListTabulatedFunction listFunction = getListFunction();
+        final LinkedListTabulatedFunction function = getFunction();
+        final LinkedListTabulatedFunction arrayListFunction = getArrayListFunction();
         assertEquals(getListOfArray().indexOfX(3), 2);
         assertEquals(getListOfMathFunction().indexOfX(5), 0);
         assertEquals(getListOfArray().indexOfX(50), -1);
+        assertEquals(listFunction.indexOfX(7), 3, DELTA);
+        assertEquals(function.indexOfX(0), 2);
+        assertNotEquals(function.indexOfX(1000), Double.NaN);
+        assertNotEquals(function.indexOfX(-1000), Double.NaN);
+        assertEquals(function.indexOfX(Double.NaN), -1);
+        assertEquals(function.indexOfX(5), -1);
+        assertEquals(function.indexOfX(-5), -1);
+        assertEquals(arrayListFunction.indexOfX(7), -1);
+        assertNotEquals(arrayListFunction.indexOfX(1100), Double.NaN);
+        assertEquals(arrayListFunction.indexOfX(Double.NaN), -1);
     }
 
     @Test
