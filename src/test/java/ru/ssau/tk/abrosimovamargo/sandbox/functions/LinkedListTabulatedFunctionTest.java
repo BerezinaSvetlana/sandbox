@@ -132,9 +132,29 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testIndexOfY() {
+        final LinkedListTabulatedFunction listFunction = getListFunction();
+        final LinkedListTabulatedFunction arrayListFunction = getArrayListFunction();
+        final LinkedListTabulatedFunction function = getFunction();
         assertEquals(getListOfArray().indexOfY(6), -1);
         assertNotEquals(getListOfArray().indexOfY(6), 1);
         assertEquals(getListOfMathFunction().indexOfY(3), -1);
+        assertEquals(listFunction.indexOfY(49), 3, DELTA);
+        assertEquals(function.indexOfY(1), 1);
+        assertNotEquals(function.indexOfY(1000), Double.NaN);
+        assertNotEquals(function.indexOfY(-1000), Double.NaN);
+        assertEquals(function.indexOfY(Double.NaN), -1);
+        assertEquals(function.indexOfY(5), -1);
+        assertEquals(function.indexOfY(-5), -1);
+        assertEquals(arrayListFunction.indexOfX(3), 2);
+        assertNotEquals(arrayListFunction.indexOfX(3), Double.NaN);
+        assertNotEquals(arrayListFunction.indexOfX(3), 1);
     }
 
+    @Test
+    public void testApply() {
+        AbstractTabulatedFunction mockedApply = new MockTabulatedFunction();
+        assertEquals(mockedApply.apply(1.3), 4.0, DELTA);
+        assertEquals(mockedApply.apply(4.0), 4.0, DELTA);
+        assertNotEquals(mockedApply.apply(1.3), 5.2);
+    }
 }
