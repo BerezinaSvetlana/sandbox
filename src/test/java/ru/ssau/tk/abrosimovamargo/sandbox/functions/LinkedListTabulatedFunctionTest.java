@@ -153,8 +153,9 @@ public class LinkedListTabulatedFunctionTest {
     @Test
     public void testApply() {
         AbstractTabulatedFunction mockedApply = new MockTabulatedFunction();
-        assertEquals(mockedApply.apply(1.3), 4.0, DELTA);
-        assertEquals(mockedApply.apply(4.0), 4.0, DELTA);
-        assertNotEquals(mockedApply.apply(1.3), 5.2);
+        assertEquals(mockedApply.apply(0.5), 3.0, DELTA);
+        assertEquals(mockedApply.apply(6.1), 4.0, DELTA);
+        assertEquals(mockedApply.apply(2.0), 4.0, DELTA);
+        assertNotEquals(mockedApply.apply(1.35), 2.2, DELTA);
     }
 }

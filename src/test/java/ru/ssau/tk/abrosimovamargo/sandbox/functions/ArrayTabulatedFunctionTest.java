@@ -19,7 +19,10 @@ public class ArrayTabulatedFunctionTest {
     public void testApply() {
         ArrayTabulatedFunction testingApply = new ArrayTabulatedFunction(xValues, yValues);
         final double delta = 0.0001;
-        assertEquals(testingApply.apply(7.0), 1.666666, delta);
+        assertEquals(testingApply.apply(0.5), 2.0555, delta);
+        assertEquals(testingApply.apply(1.3), 2.3, delta);
+        assertEquals(testingApply.apply(4.2), 1.977777, delta);
+        assertEquals(testingApply.apply(1.35), 2.2944, delta);
     }
 
     @Test
@@ -82,7 +85,6 @@ public class ArrayTabulatedFunctionTest {
     @Test
     public void testSetY() {
         ArrayTabulatedFunction testingSetY = new ArrayTabulatedFunction(xValues, yValues);
-        ArrayTabulatedFunction testingArrayFunction = new ArrayTabulatedFunction(source, 1, 16, 6);
         testingSetY.setY(1, 2.28);
         final double delta = 0.0001;
         assertEquals(testingSetY.getY(1), 2.28, delta);
