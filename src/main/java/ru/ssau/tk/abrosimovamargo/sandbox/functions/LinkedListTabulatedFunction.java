@@ -71,7 +71,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    int floorIndexOfX(double x) {
+    protected int floorIndexOfX(double x) {
         if (x < head.x) {
             throw new IllegalArgumentException("X is less than the left border");
         }
@@ -90,17 +90,17 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     @Override
-    double extrapolateLeft(double x) {
+    protected double extrapolateLeft(double x) {
         return 0;
     }
 
     @Override
-    double extrapolateRight(double x) {
+    protected double extrapolateRight(double x) {
         return 0;
     }
 
     @Override
-    double interpolate(double x, int floorIndex) {
+    protected double interpolate(double x, int floorIndex) {
         return 0;
     }
 
