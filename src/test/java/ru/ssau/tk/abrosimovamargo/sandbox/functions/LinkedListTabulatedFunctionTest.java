@@ -170,5 +170,14 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(listFunction().apply(1.4), 2.2, delta);
         assertEquals(listFunction().apply(1.15), 1.5, delta);
         assertNotEquals(listFunction().apply(7.25), 59.3, delta);
+        assertEquals(testingApply.apply(1.0), 11.0, delta);
+        assertEquals(testingApply.apply(2.0), 22.0, delta);
+        assertEquals(testingApply.apply(3.0), 33.0, delta);
+        assertEquals(testingApply.apply(4.0), 44.0, delta);
+        assertEquals(listFunction().apply(1.0), 1.0, delta);
+        assertEquals(listFunction().apply(2.0), 4.0, delta);
+        assertEquals(listFunction().apply(3.0), 9.0, delta);
+        assertEquals(listFunction().apply(4.0), 16.0, delta);
+        assertEquals(listFunction().apply(5.0), 25.0, delta);
     }
 }
