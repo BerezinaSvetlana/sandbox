@@ -91,17 +91,28 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     @Override
     protected double extrapolateLeft(double x) {
-        return 0;
+        if (head.x == head.prev.x) {
+            return head.x;
+        }
+        return interpolate(x, head.x, head.next.x, head.y, head.next.y);
     }
 
     @Override
     protected double extrapolateRight(double x) {
-        return 0;
+        if (head.x == head.prev.x) {
+            return head.x;
+        }
+        return interpolate(x, head.prev.prev.x, head.prev.x, head.prev.prev.y, head.prev.y);
     }
 
     @Override
     protected double interpolate(double x, int floorIndex) {
-        return 0;
+        if (head.x == head.prev.x) {
+            return head.y;
+        }
+        Node leftNode = getNode(floorIndex);
+        Node rightNode = leftNode.next;
+        return interpolate(x, leftNode.x, rightNode.x, leftNode.y, rightNode.y);
     }
 
     @Override

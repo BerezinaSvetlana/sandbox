@@ -24,6 +24,10 @@ public class LinkedListTabulatedFunctionTest {
         return new LinkedListTabulatedFunction(xValues, yValues);
     }
 
+    private LinkedListTabulatedFunction listFunction() {
+        return new LinkedListTabulatedFunction(sqr, 1, 5, 5);
+    }
+
     private LinkedListTabulatedFunction getListFunction() {
         return new LinkedListTabulatedFunction(sqr, 1, 9, 5);
     }
@@ -152,10 +156,18 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testApply() {
-        AbstractTabulatedFunction mockedApply = new MockTabulatedFunction();
-        assertEquals(mockedApply.apply(0.5), 3.0, DELTA);
-        assertEquals(mockedApply.apply(6.1), 4.0, DELTA);
-        assertEquals(mockedApply.apply(2.0), 4.0, DELTA);
-        assertNotEquals(mockedApply.apply(1.35), 2.2, DELTA);
+        LinkedListTabulatedFunction testingApply = new LinkedListTabulatedFunction(xValues, yValues);
+        assertEquals(testingApply.apply(-1.0), 13.444444444444445, DELTA);
+        assertEquals(testingApply.apply(1.4), 10.511111111111111, DELTA);
+        assertEquals(testingApply.apply(1.1), 10.877777777777778, DELTA);
+        assertEquals(testingApply.apply(1.1555), 10.809944444444444, DELTA);
+        assertNotEquals(testingApply.apply(7.82), 1.23, DELTA);
+        assertNotEquals(testingApply.apply(1.22), 1.23, DELTA);
+        assertEquals(listFunction().apply(-1.0), -5.0, DELTA);
+        assertEquals(listFunction().apply(1.5), 2.5, DELTA);
+        assertEquals(listFunction().apply(1.1), 1.3000000000000003, DELTA);
+        assertEquals(listFunction().apply(1.4), 2.1999999999999997, DELTA);
+        assertEquals(listFunction().apply(1.15), 1.4499999999999997, DELTA);
+        assertNotEquals(listFunction().apply(7.25), 59.25, DELTA);
     }
 }
