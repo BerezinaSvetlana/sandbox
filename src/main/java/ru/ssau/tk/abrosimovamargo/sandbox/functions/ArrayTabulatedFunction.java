@@ -19,6 +19,12 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public ArrayTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        if (count < 2) {
+            throw new IllegalArgumentException("Length less than 2 points");
+        }
+        if (xFrom >= xTo) {
+            throw new IllegalArgumentException("Incorrect parameter values");
+        }
         this.count = count;
         xValues = new double[count];
         yValues = new double[count];
