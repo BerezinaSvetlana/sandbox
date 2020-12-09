@@ -5,7 +5,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     private int count = 0;
     private Node head;
 
-    private static class Node {
+    protected static class Node {
         public double x;
         public double y;
         public Node prev;
@@ -31,12 +31,21 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
+        if (xValues.length < 2) {
+            throw new IllegalArgumentException("Length less than 2 points");
+        }
         for (int i = 0; i < xValues.length; i++) {
             this.addNode(xValues[i], yValues[i]);
         }
     }
 
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
+        if (count < 2) {
+            throw new IllegalArgumentException("Length less than 2 points");
+        }
+        if ((xFrom >= xTo)) {
+            throw new IllegalArgumentException("Incorrect parameter values");
+        }
         double[] xValues = new double[count];
         xValues[0] = xFrom;
         final double step = (xTo - xFrom) / (count - 1);
@@ -48,6 +57,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     }
 
     private Node getNode(int index) {
+        if (index < 0 || index > count - 1) {
+            throw new IllegalArgumentException("Incorrect index entered");
+        }
         Node indexNode;
         if (index <= (count / 2)) {
             indexNode = head;
