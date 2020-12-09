@@ -10,6 +10,9 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     protected double[] yValues;
 
     public ArrayTabulatedFunction(double[] xValues, double[] yValues) {
+        if (xValues.length < 2) {
+            throw new IllegalArgumentException("Length less than 2 points");
+        }
         count = xValues.length;
         this.xValues = Arrays.copyOf(xValues, count);
         this.yValues = Arrays.copyOf(yValues, count);
@@ -29,7 +32,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
             xMomentValue += step;
         }
     }
-
 
 
     @Override
@@ -65,7 +67,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     protected double interpolate(double x, int floorIndex) {
         return interpolate(x, xValues[floorIndex], xValues[floorIndex + 1], yValues[floorIndex], yValues[floorIndex + 1]);
     }
-
 
 
     @Override
