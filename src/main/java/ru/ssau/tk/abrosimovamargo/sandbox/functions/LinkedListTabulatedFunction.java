@@ -5,7 +5,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     private int count = 0;
     private Node head;
 
-    protected class Node {
+    private static class Node {
         public double x;
         public double y;
         public Node prev;
