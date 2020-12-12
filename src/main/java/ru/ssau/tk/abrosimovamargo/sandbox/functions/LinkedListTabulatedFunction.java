@@ -2,6 +2,8 @@ package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
 import exceptions.InterpolationException;
 
+import java.util.Iterator;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
 
     private int count = 0;
@@ -183,5 +185,9 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     public double rightBound() {
         return head.prev.x;
+    }
+    @Override
+    public Iterator<Point> iterator() {
+        throw new UnsupportedOperationException();
     }
 }
