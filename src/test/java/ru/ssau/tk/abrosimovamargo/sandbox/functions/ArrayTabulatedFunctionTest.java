@@ -3,6 +3,9 @@ package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 import exceptions.InterpolationException;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import static org.testng.Assert.*;
 
 public class ArrayTabulatedFunctionTest {
@@ -140,5 +143,24 @@ public class ArrayTabulatedFunctionTest {
         final double delta = 0.0001;
         assertEquals(testingRightBound.rightBound(), 1.4, delta);
         assertNotEquals(testingRightBound.rightBound(), 1.6, delta);
+    }
+    @Test
+    public void testIterator() {
+        final double DELTA = 0.001;
+        Iterator<Point> iterator = testingArrayFunction().iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(point.x, testingArrayFunction().getX(i), DELTA);
+            assertEquals(point.y, testingArrayFunction().getY(i++), DELTA);
+        }
+        System.out.println(i);
+        i = 0;
+        for (Point point : testingArrayFunction()) {
+            assertEquals(point.x, testingArrayFunction().getX(i), DELTA);
+            assertEquals(point.y, testingArrayFunction().getY(i++), DELTA);
+        }
+        System.out.println(i);
+        assertThrows(NoSuchElementException.class, iterator::next);
     }
 }

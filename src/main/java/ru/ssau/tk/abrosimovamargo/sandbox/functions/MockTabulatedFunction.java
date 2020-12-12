@@ -1,5 +1,7 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
+import java.util.Iterator;
+
 public class MockTabulatedFunction extends AbstractTabulatedFunction {
     private static final double x0 = 1.0;
     private static final double x1 = 2.0;
@@ -80,5 +82,10 @@ public class MockTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     public double rightBound() {
         return x1;
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
+        return null;
     }
 }
