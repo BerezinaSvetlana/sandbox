@@ -1,5 +1,6 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
+import exceptions.InterpolationException;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -14,6 +15,22 @@ public class ArrayTabulatedFunctionTest {
         return new ArrayTabulatedFunction(source, 1, 16, 6);
     }
 
+    @Test
+    public void testArrayTabulatedFunction() {
+        double[] xValues = {4.1};
+        double[] yValues = {6.2};
+        assertThrows(IllegalArgumentException.class, () -> new ArrayTabulatedFunction(xValues, yValues));
+        assertThrows(IllegalArgumentException.class, () -> new ArrayTabulatedFunction(source, -37, -100, 2));
+        assertThrows(IllegalArgumentException.class, () -> new ArrayTabulatedFunction(source, -5, -15, -1));
+        assertThrows(IllegalArgumentException.class, () -> new ArrayTabulatedFunction(source, -4, -80, -2));
+        assertThrows(IllegalArgumentException.class, () -> new ArrayTabulatedFunction(source, 4, -8, 1));
+    }
+
+    @Test
+    public void testGetCount() {
+        assertEquals(testingArrayFunction().getCount(), 6);
+        assertNotEquals(testingArrayFunction().getCount(), 7);
+    }
 
     @Test
     public void testApply() {
@@ -50,20 +67,22 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(testingExtrapolateRight.extrapolateRight(5.0), 1.88888, delta);
         assertNotEquals(testingExtrapolateRight.extrapolateRight(2.45), 2.18);
     }
-
-
     @Test
-    public void testGetCount() {
-        assertEquals(testingArrayFunction().getCount(), 6);
-        assertNotEquals(testingArrayFunction().getCount(), 7);
+    public void testInterpolate() {
+        final double DELTA = 0.0001;
+        ArrayTabulatedFunction testingInterpolate = new ArrayTabulatedFunction(xValues, yValues);
+        assertEquals(testingInterpolate.interpolate(1.23, testingInterpolate.floorIndexOfX(1.23)), 2.19666, DELTA);
+        assertNotEquals(testingInterpolate.interpolate(1.33, testingInterpolate.floorIndexOfX(1.33)), 8.43, DELTA);
+        assertEquals(testingArrayFunction().interpolate(1.41, testingArrayFunction().floorIndexOfX(1.41)), 3.0499, DELTA);
+        assertEquals(testingArrayFunction().interpolate(1.35, testingArrayFunction().floorIndexOfX(1.35)), 2.75, DELTA);
+        assertNotEquals(testingArrayFunction().interpolate(1.33, testingArrayFunction().floorIndexOfX(1.33)), 8.43, DELTA);
+        assertThrows(InterpolationException.class, () -> testingInterpolate.interpolate(0.5, 2));
+        assertThrows(InterpolationException.class, () -> testingArrayFunction().interpolate(7.5, 3));
     }
 
     @Test
-    public void testInterpolate() {
-        ArrayTabulatedFunction testingInterpolate = new ArrayTabulatedFunction(xValues, yValues);
-        final double delta = 0.00001;
-        assertEquals(testingInterpolate.interpolate(7.4, 1), 1.399999, delta);
-        assertNotEquals(testingInterpolate.interpolate(68.247, 1), 4.237, delta);
+    public void testInterpolateException() {
+
     }
 
     @Test

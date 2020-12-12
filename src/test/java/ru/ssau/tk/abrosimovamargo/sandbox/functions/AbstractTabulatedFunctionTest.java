@@ -1,5 +1,7 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
+import exceptions.ArrayIsNotSortedException;
+import exceptions.DifferentLengthOfArraysException;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -22,5 +24,26 @@ public class AbstractTabulatedFunctionTest {
         assertEquals(mockedApply.apply(1.3), 4.0, delta);
         assertEquals(mockedApply.apply(4.0), 4.0, delta);
         assertNotEquals(mockedApply.apply(1.3), 5.2);
+    }
+    @Test
+    public void testCheckLengthIsTheSame() {
+        assertThrows(DifferentLengthOfArraysException.class, () -> {
+            double[] valuesX = new double[]{2, -9};
+            double[] valuesY = new double[]{5};
+            AbstractTabulatedFunction.checkLengthIsTheSame(valuesX, valuesY);
+        });
+        double[] valuesX = new double[]{2, 9};
+        double[] valuesY = new double[]{5, 9};
+        AbstractTabulatedFunction.checkLengthIsTheSame(valuesX, valuesY);
+    }
+
+    @Test
+    public void testCheckSorted() {
+        assertThrows(ArrayIsNotSortedException.class, () -> {
+            double[] valuesX = new double[]{-1, 1, 5, 7, -4};
+            AbstractTabulatedFunction.checkSorted(valuesX);
+        });
+        double[] valuesX = new double[]{1, 2, 3, 4, 5, 6};
+        AbstractTabulatedFunction.checkSorted(valuesX);
     }
 }

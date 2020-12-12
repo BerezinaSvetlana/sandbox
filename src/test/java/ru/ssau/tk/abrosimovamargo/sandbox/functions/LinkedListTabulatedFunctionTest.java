@@ -1,5 +1,6 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
+import exceptions.InterpolationException;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -13,6 +14,7 @@ public class LinkedListTabulatedFunctionTest {
     private final MathFunction testFunction = new SqrFunction();
 
     private LinkedListTabulatedFunction getListOfArray() {
+
         return new LinkedListTabulatedFunction(xValues, yValues);
     }
 
@@ -34,6 +36,18 @@ public class LinkedListTabulatedFunctionTest {
 
     private LinkedListTabulatedFunction getFunction() {
         return new LinkedListTabulatedFunction(sqr, -2, 2, 5);
+    }
+
+
+    @Test
+    public void testLinkedListTabulatedFunction() {
+        double[] xValues = {1.1};
+        double[] yValues = {5.2};
+        assertThrows(IllegalArgumentException.class, () -> new LinkedListTabulatedFunction(xValues, yValues));
+        assertThrows(IllegalArgumentException.class, () -> new LinkedListTabulatedFunction(sqr, -10, -34, 2));
+        assertThrows(IllegalArgumentException.class, () -> new LinkedListTabulatedFunction(sqr, -5, -15, -1));
+        assertThrows(IllegalArgumentException.class, () -> new LinkedListTabulatedFunction(sqr, -4, -80, -2));
+        assertThrows(IllegalArgumentException.class, () -> new LinkedListTabulatedFunction(sqr, 4, -8, 5));
     }
 
     @Test
@@ -75,9 +89,10 @@ public class LinkedListTabulatedFunctionTest {
         assertNotEquals(getListOfMathFunction().extrapolateRight(4), 1, DELTA);
     }
 
-    @Test
-    public void testInterpolate() {
-    }
+
+
+        //assertThrows(InterpolationException.class, () -> function.interpolate(2, function.floorIndexOfX(-2)));
+        //assertThrows(InterpolationException.class, () -> function.interpolate(0, function.floorIndexOfX(2)));
 
     @Test
     public void testGetCount() {
@@ -179,5 +194,14 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(listFunction().apply(3.0), 9.0, delta);
         assertEquals(listFunction().apply(4.0), 16.0, delta);
         assertEquals(listFunction().apply(5.0), 25.0, delta);
+    }
+    @Test
+    public void testInterpolate() {
+        final double DELTA = 0.0001;
+        assertEquals(getListOfArray().interpolate(1.23, getListOfArray().floorIndexOfX(1.23)), 10.7188, DELTA);
+        assertEquals(getListOfArray().interpolate(1.15, getListOfArray().floorIndexOfX(1.15)), 10.8166, DELTA);
+        assertNotEquals(getListOfArray().interpolate(1.33, getListOfArray().floorIndexOfX(1.33)), 8.43, DELTA);
+        assertThrows(InterpolationException.class, () -> getListOfArray().interpolate(0.5, 2));
+        assertThrows(InterpolationException.class, () -> getListOfMathFunction().interpolate(7.5, 3));
     }
 }
