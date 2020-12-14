@@ -3,6 +3,8 @@ package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 import exceptions.InterpolationException;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+
 import static org.testng.Assert.*;
 
 public class LinkedListTabulatedFunctionTest {
@@ -90,9 +92,8 @@ public class LinkedListTabulatedFunctionTest {
     }
 
 
-
-        //assertThrows(InterpolationException.class, () -> function.interpolate(2, function.floorIndexOfX(-2)));
-        //assertThrows(InterpolationException.class, () -> function.interpolate(0, function.floorIndexOfX(2)));
+    //assertThrows(InterpolationException.class, () -> function.interpolate(2, function.floorIndexOfX(-2)));
+    //assertThrows(InterpolationException.class, () -> function.interpolate(0, function.floorIndexOfX(2)));
 
     @Test
     public void testGetCount() {
@@ -195,6 +196,7 @@ public class LinkedListTabulatedFunctionTest {
         assertEquals(listFunction().apply(4.0), 16.0, delta);
         assertEquals(listFunction().apply(5.0), 25.0, delta);
     }
+
     @Test
     public void testInterpolate() {
         final double DELTA = 0.0001;
@@ -203,5 +205,44 @@ public class LinkedListTabulatedFunctionTest {
         assertNotEquals(getListOfArray().interpolate(1.33, getListOfArray().floorIndexOfX(1.33)), 8.43, DELTA);
         assertThrows(InterpolationException.class, () -> getListOfArray().interpolate(0.5, 2));
         assertThrows(InterpolationException.class, () -> getListOfMathFunction().interpolate(7.5, 3));
+    }
+
+    @Test
+    public void testIteratorWhile() {
+        final LinkedListTabulatedFunction function = getArrayListFunction();
+        final Iterator<Point> iterator = function.iterator();
+        final LinkedListTabulatedFunction scaryFunction = getListFunction();
+        final Iterator<Point> secondIterator = scaryFunction.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(point.x, function.getX(i), DELTA);
+            assertEquals(point.y, function.getY(i++), DELTA);
+        }
+        assertEquals(i, function.getCount());
+        i = 0;
+        while (secondIterator.hasNext()) {
+            Point point = secondIterator.next();
+            assertEquals(point.x, scaryFunction.getX(i), DELTA);
+            assertEquals(point.y, scaryFunction.getY(i++), DELTA);
+        }
+    }
+
+    @Test
+    public void testIteratorForEach() {
+        final LinkedListTabulatedFunction function = getArrayListFunction();
+        final Iterator<Point> iterator = function.iterator();
+        final LinkedListTabulatedFunction scaryFunction = getListFunction();
+        final Iterator<Point> secondIterator = scaryFunction.iterator();
+        for (Point point : function) {
+            Point iteratorPoint = iterator.next();
+            assertEquals(iteratorPoint.x, point.x, DELTA);
+            assertEquals(iteratorPoint.y, point.y, DELTA);
+        }
+        for (Point point : scaryFunction) {
+            Point iteratorPoint = secondIterator.next();
+            assertEquals(iteratorPoint.x, point.x, DELTA);
+            assertEquals(iteratorPoint.y, point.y, DELTA);
+        }
     }
 }
