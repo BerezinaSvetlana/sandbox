@@ -86,7 +86,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
                 indexNode = indexNode.prev;
             }
         }
-        return null;
+        throw new UnsupportedOperationException("");
     }
 
     @Override
