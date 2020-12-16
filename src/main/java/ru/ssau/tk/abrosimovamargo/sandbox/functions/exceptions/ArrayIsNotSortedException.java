@@ -1,4 +1,4 @@
-package exceptions;
+package ru.ssau.tk.abrosimovamargo.sandbox.functions.exceptions;
 
 public class ArrayIsNotSortedException extends RuntimeException{
     public ArrayIsNotSortedException() {

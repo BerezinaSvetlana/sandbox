@@ -1,7 +1,7 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
-import exceptions.ArrayIsNotSortedException;
-import exceptions.DifferentLengthOfArraysException;
+import ru.ssau.tk.abrosimovamargo.sandbox.functions.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.abrosimovamargo.sandbox.functions.exceptions.DifferentLengthOfArraysException;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
 
@@ -16,29 +16,29 @@ public abstract class AbstractTabulatedFunction implements TabulatedFunction {
     protected double interpolate(double x, double leftX, double rightX, double leftY, double rightY) {
         return leftY + (rightY - leftY) * (x - leftX) / (rightX - leftY);
     }
+
     protected static void checkLengthIsTheSame(double[] xValues, double[] yValues) {
         if (xValues.length != yValues.length) {
             throw new DifferentLengthOfArraysException();
         }
     }
-
     protected static void checkSorted(double[] xValues) {
-        for (int i = 0; i != xValues.length - 1; i++) {
-            if (xValues[i] > xValues[i + 1]) {
+        for (int i = 0; i < xValues.length - 1; i++) {
+            if (xValues[i + 1] <= xValues[i]) {
                 throw new ArrayIsNotSortedException();
             }
         }
     }
 
-    public double apply(double x){
-    if (x < leftBound()) {
-        return extrapolateLeft(x);
-    } else if (x > rightBound()) {
-        return extrapolateRight(x);
-    } else if (indexOfX(x) != -1) {
-        return getY(indexOfX(x));
-    } else {
-        return interpolate(x, floorIndexOfX(x));
+    public double apply(double x) {
+        if (x < leftBound()) {
+            return extrapolateLeft(x);
+        } else if (x > rightBound()) {
+            return extrapolateRight(x);
+        } else if (indexOfX(x) != -1) {
+            return getY(indexOfX(x));
+        } else {
+            return interpolate(x, floorIndexOfX(x));
+        }
     }
-}
 }
