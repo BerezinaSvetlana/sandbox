@@ -4,6 +4,7 @@ import ru.ssau.tk.abrosimovamargo.sandbox.functions.exceptions.InterpolationExce
 import org.testng.annotations.Test;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.testng.Assert.*;
 
@@ -211,40 +212,38 @@ public class LinkedListTabulatedFunctionTest {
 
     @Test
     public void testIteratorWhile() {
-        final LinkedListTabulatedFunction function = getArrayListFunction();
-        final Iterator<Point> iterator = function.iterator();
-        final LinkedListTabulatedFunction scaryFunction = getListFunction();
-        final Iterator<Point> secondIterator = scaryFunction.iterator();
+        Iterator<Point> iterator = getListOfArray().iterator();
+        Iterator<Point> iterator_1 = getListOfMathFunction().iterator();
         int i = 0;
         while (iterator.hasNext()) {
             Point point = iterator.next();
-            assertEquals(point.x, function.getX(i), DELTA);
-            assertEquals(point.y, function.getY(i++), DELTA);
+            assertEquals(getListOfArray().getX(i), point.x, DELTA);
+            assertEquals(getListOfArray().getY(i++), point.y, DELTA);
         }
-        assertEquals(i, function.getCount());
-        i = 0;
-        while (secondIterator.hasNext()) {
-            Point point = secondIterator.next();
-            assertEquals(point.x, scaryFunction.getX(i), DELTA);
-            assertEquals(point.y, scaryFunction.getY(i++), DELTA);
+        assertEquals(getListOfArray().getCount(), i);
+        int j = 0;
+        while (iterator_1.hasNext()) {
+            Point point = iterator_1.next();
+            assertEquals(getListOfMathFunction().getX(j), point.x, DELTA);
+            assertEquals(getListOfMathFunction().getY(j++), point.y, DELTA);
         }
+        assertEquals(getListOfMathFunction().getCount(), j);
+        assertThrows(NoSuchElementException.class, iterator::next);
     }
 
     @Test
     public void testIteratorForEach() {
-        final LinkedListTabulatedFunction function = getArrayListFunction();
-        final Iterator<Point> iterator = function.iterator();
-        final LinkedListTabulatedFunction scaryFunction = getListFunction();
-        final Iterator<Point> secondIterator = scaryFunction.iterator();
-        for (Point point : function) {
-            Point iteratorPoint = iterator.next();
-            assertEquals(iteratorPoint.x, point.x, DELTA);
-            assertEquals(iteratorPoint.y, point.y, DELTA);
+        int i = 0;
+        for (Point point : getListOfArray()) {
+            assertEquals(getListOfArray().getX(i), point.x, DELTA);
+            assertEquals(getListOfArray().getY(i++), point.y, DELTA);
         }
-        for (Point point : scaryFunction) {
-            Point iteratorPoint = secondIterator.next();
-            assertEquals(iteratorPoint.x, point.x, DELTA);
-            assertEquals(iteratorPoint.y, point.y, DELTA);
+        assertEquals(getListOfArray().getCount(), i);
+        int j = 0;
+        for (Point point : getListOfMathFunction()) {
+            assertEquals(getListOfMathFunction().getX(j), point.x, DELTA);
+            assertEquals(getListOfMathFunction().getY(j++), point.y, DELTA);
         }
+        assertEquals(getListOfMathFunction().getCount(), j);
     }
 }
