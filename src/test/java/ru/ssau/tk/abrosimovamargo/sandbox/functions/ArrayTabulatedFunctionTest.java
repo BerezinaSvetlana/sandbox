@@ -18,6 +18,14 @@ public class ArrayTabulatedFunctionTest {
         return new ArrayTabulatedFunction(source, 1, 16, 6);
     }
 
+    private ArrayTabulatedFunction getArrayThroughArrayFunction() {
+        return new ArrayTabulatedFunction(xValues, yValues);
+    }
+
+    private ArrayTabulatedFunction getArrayThroughLinkedFunction() {
+        return new ArrayTabulatedFunction(source, 1, 16, 6);
+    }
+
     @Test
     public void testArrayTabulatedFunction() {
         double[] xValues = {4.1};
@@ -52,6 +60,12 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(testingFloorIndexOfX.floorIndexOfX(1.35), 3, delta);
         assertEquals(testingFloorIndexOfX.floorIndexOfX(1.43), 5, delta);
         assertNotEquals(testingFloorIndexOfX.floorIndexOfX(1.43), 4);
+        assertThrows(IllegalArgumentException.class, () -> getArrayThroughArrayFunction().floorIndexOfX(-1));
+        assertThrows(IllegalArgumentException.class, () -> getArrayThroughArrayFunction().floorIndexOfX(1));
+        assertThrows(IllegalArgumentException.class, () -> getArrayThroughArrayFunction().floorIndexOfX(-3));
+        assertThrows(IllegalArgumentException.class, () -> getArrayThroughLinkedFunction().floorIndexOfX(-1));
+        assertThrows(IllegalArgumentException.class, () -> getArrayThroughLinkedFunction().floorIndexOfX(-10));
+        assertThrows(IllegalArgumentException.class, () -> getArrayThroughLinkedFunction().floorIndexOfX(-4));
     }
 
     @Test
@@ -70,6 +84,7 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(testingExtrapolateRight.extrapolateRight(5.0), 1.88888, delta);
         assertNotEquals(testingExtrapolateRight.extrapolateRight(2.45), 2.18);
     }
+
     @Test
     public void testInterpolate() {
         final double DELTA = 0.0001;
@@ -144,6 +159,7 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(testingRightBound.rightBound(), 1.4, delta);
         assertNotEquals(testingRightBound.rightBound(), 1.6, delta);
     }
+
     @Test
     public void testIterator() {
         final double DELTA = 0.001;

@@ -51,9 +51,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         if (x < xValues[0]) {
             throw new IllegalArgumentException("X is less than the left border");
         }
-        if (x < xValues[0]) {
-            return 0;
-        }
         for (int i = 0; i + 1 < count; i++) {
             if (xValues[i + 1] > x) {
                 return i;
