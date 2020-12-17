@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import static org.testng.Assert.*;
 
 public class ArrayTabulatedFunctionTest {
+    final double delta = 0.0001;
     double[] xValues = new double[]{1.0, 1.1, 1.2, 1.3, 1.4};
     double[] yValues = new double[]{2.0, 2.1, 2.2, 2.3, 2.4};
     private final MathFunction source = new SqrFunction();
@@ -24,6 +25,14 @@ public class ArrayTabulatedFunctionTest {
 
     private ArrayTabulatedFunction getArrayThroughLinkedFunction() {
         return new ArrayTabulatedFunction(source, 1, 16, 6);
+    }
+
+    private ArrayTabulatedFunction getDefinedThroughArrays() {
+        return new ArrayTabulatedFunction(xValues, yValues);
+    }
+
+    private ArrayTabulatedFunction getDefinedThroughMathFunction() {
+        return new ArrayTabulatedFunction(source, 0, 9, 109);
     }
 
     @Test
@@ -46,7 +55,6 @@ public class ArrayTabulatedFunctionTest {
     @Test
     public void testApply() {
         ArrayTabulatedFunction testingApply = new ArrayTabulatedFunction(xValues, yValues);
-        final double delta = 0.0001;
         assertEquals(testingApply.apply(0.5), 2.0555, delta);
         assertEquals(testingApply.apply(1.3), 2.3, delta);
         assertEquals(testingApply.apply(4.2), 1.977777, delta);
@@ -61,7 +69,6 @@ public class ArrayTabulatedFunctionTest {
         assertEquals(testingFloorIndexOfX.floorIndexOfX(1.43), 5, delta);
         assertNotEquals(testingFloorIndexOfX.floorIndexOfX(1.43), 4);
         assertThrows(IllegalArgumentException.class, () -> getArrayThroughArrayFunction().floorIndexOfX(-1));
-        assertThrows(IllegalArgumentException.class, () -> getArrayThroughArrayFunction().floorIndexOfX(1));
         assertThrows(IllegalArgumentException.class, () -> getArrayThroughArrayFunction().floorIndexOfX(-3));
         assertThrows(IllegalArgumentException.class, () -> getArrayThroughLinkedFunction().floorIndexOfX(-1));
         assertThrows(IllegalArgumentException.class, () -> getArrayThroughLinkedFunction().floorIndexOfX(-10));
@@ -161,22 +168,39 @@ public class ArrayTabulatedFunctionTest {
     }
 
     @Test
-    public void testIterator() {
-        final double DELTA = 0.001;
-        Iterator<Point> iterator = testingArrayFunction().iterator();
+    public void testIteratorWhile() {
+        Iterator<Point> iterator = getDefinedThroughArrays().iterator();
         int i = 0;
         while (iterator.hasNext()) {
             Point point = iterator.next();
-            assertEquals(point.x, testingArrayFunction().getX(i), DELTA);
-            assertEquals(point.y, testingArrayFunction().getY(i++), DELTA);
+            assertEquals(getDefinedThroughArrays().getX(i), point.x, delta);
+            assertEquals(getDefinedThroughArrays().getY(i++), point.y, delta);
         }
-        System.out.println(i);
-        i = 0;
-        for (Point point : testingArrayFunction()) {
-            assertEquals(point.x, testingArrayFunction().getX(i), DELTA);
-            assertEquals(point.y, testingArrayFunction().getY(i++), DELTA);
+
+        Iterator<Point> iterator_1 = getDefinedThroughMathFunction().iterator();
+        int j = 0;
+        while (iterator_1.hasNext()) {
+            Point point = iterator_1.next();
+            assertEquals(getDefinedThroughMathFunction().getX(j), point.x, delta);
+            assertEquals(getDefinedThroughMathFunction().getY(j++), point.y, delta);
         }
-        System.out.println(i);
+        assertEquals(getDefinedThroughMathFunction().getCount(), j);
         assertThrows(NoSuchElementException.class, iterator::next);
+    }
+
+    @Test
+    public void testIteratorForEach() {
+        int i = 0;
+        for (Point point : getDefinedThroughArrays()) {
+            assertEquals(getDefinedThroughArrays().getX(i), point.x, delta);
+            assertEquals(getDefinedThroughArrays().getY(i++), point.y, delta);
+        }
+        assertEquals(getDefinedThroughArrays().getCount(), i);
+        int j = 0;
+        for (Point point : getDefinedThroughMathFunction()) {
+            assertEquals(getDefinedThroughMathFunction().getX(j), point.x, delta);
+            assertEquals(getDefinedThroughMathFunction().getY(j++), point.y, delta);
+        }
+        assertEquals(getDefinedThroughMathFunction().getCount(), j);
     }
 }
