@@ -1,6 +1,6 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
-import ru.ssau.tk.abrosimovamargo.sandbox.functions.exceptions.InterpolationException;
+import ru.ssau.tk.abrosimova.sandbox.exceptions.InterpolationException;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -135,6 +135,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
 
             @Override
             public boolean hasNext() {
+
                 return i < count;
             }
 
@@ -142,12 +143,13 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
             public Point next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
+                } else {
+                    Point point = new Point(xValues[i], yValues[i]);
+                    i++;
+                    return point;
                 }
-                Point point = new Point(xValues[i], yValues[i]);
-                i++;
-                return point;
             }
         };
-    }
 
+    }
 }

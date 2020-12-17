@@ -1,4 +1,4 @@
-package ru.ssau.tk.abrosimovamargo.sandbox.functions.exceptions;
+package ru.ssau.tk.abrosimova.sandbox.exceptions;
 
 public class InterpolationException extends RuntimeException{
     public InterpolationException() {

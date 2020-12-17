@@ -1,7 +1,7 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
-import ru.ssau.tk.abrosimovamargo.sandbox.functions.exceptions.ArrayIsNotSortedException;
-import ru.ssau.tk.abrosimovamargo.sandbox.functions.exceptions.DifferentLengthOfArraysException;
+import ru.ssau.tk.abrosimova.sandbox.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.abrosimova.sandbox.exceptions.DifferentLengthOfArraysException;
 
 public abstract class AbstractTabulatedFunction implements TabulatedFunction {
 
