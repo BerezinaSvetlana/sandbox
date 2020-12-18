@@ -1,5 +1,6 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.operations;
 
+import javafx.beans.binding.DoubleExpression;
 import org.testng.annotations.Test;
 import ru.ssau.tk.abrosimovamargo.sandbox.exceptions.InconsistentFunctionsException;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.ArrayTabulatedFunction;
@@ -8,6 +9,7 @@ import ru.ssau.tk.abrosimovamargo.sandbox.functions.Point;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.TabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.factory.ArrayTabulatedFunctionFactory;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.factory.LinkedListTabulatedFunctionFactory;
+import ru.ssau.tk.abrosimovamargo.sandbox.functions.factory.TabulatedFunctionFactory;
 
 import static org.testng.Assert.*;
 
@@ -19,6 +21,10 @@ public class TabulatedFunctionOperationServiceTest {
     private final TabulatedFunctionOperationService operationServiceList = new TabulatedFunctionOperationService(new LinkedListTabulatedFunctionFactory());
     private final TabulatedFunction testArrayFunction = new ArrayTabulatedFunction(valuesX, valuesY);
     private final TabulatedFunction testListFunction = new LinkedListTabulatedFunction(valuesX, valuesYForList);
+    double[] firstX = new double[]{1., 2., 3., 4.};
+    double[] firstY = new double[]{2., 4., 6., 8.};
+    double[] secondX = new double[]{1., 2., 3., 5.};
+    double[] secondY = new double[]{1., 2., 3., 4.};
 
     ArrayTabulatedFunction getTestArray() {
         return new ArrayTabulatedFunction(valuesX, valuesY);
@@ -27,6 +33,13 @@ public class TabulatedFunctionOperationServiceTest {
     LinkedListTabulatedFunction getTestList() {
         return new LinkedListTabulatedFunction(valuesX, valuesYForList);
     }
+
+    private final TabulatedFunctionFactory linkedListFactory = new LinkedListTabulatedFunctionFactory();
+    private final TabulatedFunctionOperationService operationServiceThroughArray = new TabulatedFunctionOperationService();
+    private final TabulatedFunctionOperationService operationServiceThroughLinkedList = new TabulatedFunctionOperationService(linkedListFactory);
+    private final TabulatedFunction a = new ArrayTabulatedFunctionFactory().create(firstX, firstY);
+    private final TabulatedFunction b = linkedListFactory.create(firstX, secondY);
+
     @Test
     public void testAsPoints() {
         ArrayTabulatedFunction testArrayFunction = getTestArray();
@@ -83,7 +96,7 @@ public class TabulatedFunctionOperationServiceTest {
         i = 0;
         for (Point point : testSumOfLists) {
             assertEquals(point.x, valuesX[i]);
-            assertEquals(point.y, valuesYForList [i] + valuesYForList [i++]);
+            assertEquals(point.y, valuesYForList[i] + valuesYForList[i++]);
         }
         TabulatedFunction testSumOfArrayAndList = operationServiceArray.sum(testArrayFunction, testListFunction);
         assertTrue(testSumOfArrayAndList instanceof ArrayTabulatedFunction);
@@ -116,5 +129,42 @@ public class TabulatedFunctionOperationServiceTest {
             assertEquals(point.x, valuesX[i]);
             assertEquals(point.y, valuesY[i] - valuesYForList[i++]);
         }
+    }
+
+    @Test
+    public void testMultiply() {
+        TabulatedFunction resultMultiplyThroughArray = operationServiceThroughArray.multiply(a, b);
+        TabulatedFunction resultMultiplyThroughLinkedList = operationServiceThroughLinkedList.multiply(a, b);
+        assertTrue(resultMultiplyThroughArray instanceof ArrayTabulatedFunction);
+        int i = 0;
+        for (Point point : resultMultiplyThroughArray) {
+            assertEquals(point.x, firstX[i]);
+            assertEquals(point.y, firstY[i] * secondY[i++]);
+        }
+        assertTrue(resultMultiplyThroughLinkedList instanceof LinkedListTabulatedFunction);
+        i = 0;
+        for (Point point : resultMultiplyThroughLinkedList) {
+            assertEquals(point.x, firstX[i]);
+            assertEquals(point.y, firstY[i] * secondY[i++]);
+        }
+    }
+
+    @Test
+    public void testDivide() {
+        TabulatedFunction resultDivideThroughArray = operationServiceThroughArray.divide(a, b);
+        TabulatedFunction resultDivideThroughLinkedList = operationServiceThroughLinkedList.divide(a, b);
+        assertTrue(resultDivideThroughArray instanceof ArrayTabulatedFunction);
+        int i = 0;
+        for (Point point : resultDivideThroughArray) {
+            assertEquals(point.x, firstX[i++]);
+            assertEquals(point.y, 2.);
+        }
+        assertTrue(resultDivideThroughLinkedList instanceof LinkedListTabulatedFunction);
+        i = 0;
+        for (Point point : resultDivideThroughLinkedList) {
+            assertEquals(point.x, firstX[i++]);
+            assertEquals(point.y, 2.);
+        }
+
     }
 }
