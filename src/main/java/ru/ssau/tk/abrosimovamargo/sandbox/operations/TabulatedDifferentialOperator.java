@@ -11,6 +11,9 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
         this.factory = new ArrayTabulatedFunctionFactory();
     }
 
+    public TabulatedDifferentialOperator(TabulatedFunctionFactory factory) {
+        this.factory = factory;
+    }
     public TabulatedFunctionFactory getFactory() {
         return factory;
     }
