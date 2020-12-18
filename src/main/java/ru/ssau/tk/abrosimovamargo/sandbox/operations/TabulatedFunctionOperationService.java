@@ -25,7 +25,7 @@ public class TabulatedFunctionOperationService {
     public void setFactory(TabulatedFunctionFactory factory) {
         this.factory = factory;
     }
-    
+
     public static Point[] asPoints(TabulatedFunction tabulatedFunction) {
         int i = 0;
         Point[] points = new Point[tabulatedFunction.getCount()];
@@ -34,9 +34,11 @@ public class TabulatedFunctionOperationService {
         }
         return points;
     }
+
     private interface BiOperation {
         double apply(double u, double v);
     }
+
     private TabulatedFunction doOperation(TabulatedFunction a, TabulatedFunction b, BiOperation operation) {
         if (a.getCount() != b.getCount()) {
             throw new InconsistentFunctionsException("The number of tabulated points in the tabulated functions is different");
@@ -64,6 +66,14 @@ public class TabulatedFunctionOperationService {
 
     public TabulatedFunction subtract(TabulatedFunction a, TabulatedFunction b) {
         return doOperation(a, b, (u, v) -> u - v);
+    }
+
+    public TabulatedFunction multiply(TabulatedFunction a, TabulatedFunction b) {
+        return doOperation(a, b, (u, v) -> u * v);
+    }
+
+    public TabulatedFunction divide(TabulatedFunction a, TabulatedFunction b) {
+        return doOperation(a, b, (u, v) -> u / v);
     }
 }
 
