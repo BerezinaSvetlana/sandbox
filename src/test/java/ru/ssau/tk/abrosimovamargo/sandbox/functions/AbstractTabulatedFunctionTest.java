@@ -25,6 +25,7 @@ public class AbstractTabulatedFunctionTest {
         assertEquals(mockedApply.apply(4.0), 4.0, delta);
         assertNotEquals(mockedApply.apply(1.3), 5.2);
     }
+
     @Test
     public void testCheckLengthIsTheSame() {
         assertThrows(DifferentLengthOfArraysException.class, () -> {
@@ -45,5 +46,16 @@ public class AbstractTabulatedFunctionTest {
         });
         double[] valuesX = new double[]{1, 2, 3, 4, 5, 6};
         AbstractTabulatedFunction.checkSorted(valuesX);
+    }
+
+    @Test
+    public void testTestToString() {
+        double[] valuesX = {1, 2, 3};
+        double[] valuesY = {11, 22, 33};
+        TabulatedFunction arrayFunction = new ArrayTabulatedFunction(valuesX, valuesY);
+        assertEquals(arrayFunction.toString(), "ArrayTabulatedFunction size = 3\n[1.0; 11.0]\n[2.0; 22.0]\n[3.0; 33.0]");
+
+        TabulatedFunction listFunction = new LinkedListTabulatedFunction(valuesX, valuesY);
+        assertEquals(listFunction.toString(), "LinkedListTabulatedFunction size = 3\n[1.0; 11.0]\n[2.0; 22.0]\n[3.0; 33.0]");
     }
 }
