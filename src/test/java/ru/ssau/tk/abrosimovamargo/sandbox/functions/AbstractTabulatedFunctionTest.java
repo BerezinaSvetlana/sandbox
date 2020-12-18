@@ -1,7 +1,7 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
-import ru.ssau.tk.abrosimova.sandbox.exceptions.ArrayIsNotSortedException;
-import ru.ssau.tk.abrosimova.sandbox.exceptions.DifferentLengthOfArraysException;
+import ru.ssau.tk.abrosimovamargo.sandbox.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.abrosimovamargo.sandbox.exceptions.DifferentLengthOfArraysException;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;

@@ -1,6 +1,6 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
-import ru.ssau.tk.abrosimova.sandbox.exceptions.InterpolationException;
+import ru.ssau.tk.abrosimovamargo.sandbox.exceptions.InterpolationException;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -49,7 +49,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
     @Override
     protected int floorIndexOfX(double x) {
         if (x < xValues[0]) {
-            throw new IllegalArgumentException("X is less than the left border");
+            throw new IllegalArgumentException();
         }
         for (int i = 0; i + 1 < count; i++) {
             if (xValues[i + 1] > x) {

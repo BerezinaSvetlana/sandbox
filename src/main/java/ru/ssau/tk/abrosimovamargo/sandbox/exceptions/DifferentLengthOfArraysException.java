@@ -1,4 +1,4 @@
-package ru.ssau.tk.abrosimova.sandbox.exceptions;
+package ru.ssau.tk.abrosimovamargo.sandbox.exceptions;
 
 public class DifferentLengthOfArraysException extends RuntimeException{
     public DifferentLengthOfArraysException() {

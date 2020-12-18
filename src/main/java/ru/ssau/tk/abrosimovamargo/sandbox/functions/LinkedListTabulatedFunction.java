@@ -1,6 +1,6 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
-import ru.ssau.tk.abrosimova.sandbox.exceptions.InterpolationException;
+import ru.ssau.tk.abrosimovamargo.sandbox.exceptions.InterpolationException;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
