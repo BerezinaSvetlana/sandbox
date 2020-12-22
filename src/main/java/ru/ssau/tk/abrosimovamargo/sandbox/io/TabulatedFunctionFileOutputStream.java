@@ -8,19 +8,19 @@ import java.io.*;
 
 public class TabulatedFunctionFileOutputStream {
     public static void main(String[] args) {
-        File fileArray = new File("output/array function.bin");
-        File fileList = new File("output/linked list function.bin");
+        File fileArray = new File("output/array function.txt");
+        File fileList = new File("output/linked list function.txt");
 
         double[] xValue = new double[]{1, 2, 3, 4, 5};
-        double[] yValue = new double[]{2, 4, 6, 8, 10};
+        double[] yValue = new double[]{6, 7, 8, 9, 10};
 
         TabulatedFunction functionList = new LinkedListTabulatedFunction(xValue, yValue);
         TabulatedFunction functionArray = new ArrayTabulatedFunction(xValue, yValue);
 
-        try (BufferedOutputStream outArray = new BufferedOutputStream(
-                new FileOutputStream(fileArray));
-             BufferedOutputStream outList = new BufferedOutputStream(
-                     new FileOutputStream(fileList))) {
+        try (BufferedWriter outArray = new BufferedWriter(
+                new FileWriter(fileArray));
+             BufferedWriter outList = new BufferedWriter(
+                     new FileWriter(fileList))) {
 
             FunctionsIO.writeTabulatedFunction(outArray, functionArray);
             FunctionsIO.writeTabulatedFunction(outList, functionList);
