@@ -1,6 +1,5 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.operations;
 
-import javafx.beans.binding.DoubleExpression;
 import org.testng.annotations.Test;
 import ru.ssau.tk.abrosimovamargo.sandbox.exceptions.InconsistentFunctionsException;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.ArrayTabulatedFunction;
@@ -23,7 +22,6 @@ public class TabulatedFunctionOperationServiceTest {
     private final TabulatedFunction testListFunction = new LinkedListTabulatedFunction(valuesX, valuesYForList);
     double[] firstX = new double[]{1., 2., 3., 4.};
     double[] firstY = new double[]{2., 4., 6., 8.};
-    double[] secondX = new double[]{1., 2., 3., 5.};
     double[] secondY = new double[]{1., 2., 3., 4.};
 
     ArrayTabulatedFunction getTestArray() {

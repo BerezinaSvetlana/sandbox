@@ -14,6 +14,7 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
     public TabulatedDifferentialOperator(TabulatedFunctionFactory factory) {
         this.factory = factory;
     }
+
     public TabulatedFunctionFactory getFactory() {
         return factory;
     }
@@ -35,7 +36,7 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
         }
 
         xValues[length - 1] = points[length - 1].x;
-        yValues[length - 1] = points[length - 1].y;
+        yValues[length - 1] = yValues[length - 2];
 
         return factory.create(xValues, yValues);
     }
