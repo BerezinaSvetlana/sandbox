@@ -5,10 +5,7 @@ import ru.ssau.tk.abrosimovamargo.sandbox.functions.Point;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.TabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.factory.TabulatedFunctionFactory;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -28,6 +25,17 @@ public final class FunctionsIO {
 
     }
 
+    public static void writeTabulatedFunction(BufferedOutputStream outputStream, TabulatedFunction function) throws IOException {
+        DataOutputStream out = new DataOutputStream(outputStream);
+        out.writeInt(function.getCount());
+        for (Point currentPoint : function) {
+            out.writeDouble(currentPoint.x);
+            out.writeDouble(currentPoint.y);
+        }
+        out.flush();
+    }
+
+
     public static TabulatedFunction readTabulatedFunction(BufferedReader reader, TabulatedFunctionFactory factory) throws IOException, IOException {
         int count = Integer.parseInt(reader.readLine());
 
@@ -44,6 +52,19 @@ public final class FunctionsIO {
                 throw new IOException(eParse);
             }
         }
+        return factory.create(xValues, yValues);
+    }
+
+    public static TabulatedFunction readTabulatedFunction(BufferedInputStream inputStream, TabulatedFunctionFactory factory) throws IOException {
+        DataInputStream in = new DataInputStream(inputStream);
+        int count = in.readInt();
+        double[] xValues = new double[count];
+        double[] yValues = new double[count];
+        for (int i = 0; i < count; i++) {
+            xValues[i] = in.readDouble();
+            yValues[i] = in.readDouble();
+        }
+
         return factory.create(xValues, yValues);
     }
 
