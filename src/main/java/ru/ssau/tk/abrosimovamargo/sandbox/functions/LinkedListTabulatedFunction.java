@@ -2,15 +2,18 @@ package ru.ssau.tk.abrosimovamargo.sandbox.functions;
 
 import ru.ssau.tk.abrosimovamargo.sandbox.exceptions.InterpolationException;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListTabulatedFunction extends AbstractTabulatedFunction {
+public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Serializable {
 
+    private static final long serialVersionUID = 6678513765146845008L;
     private int count = 0;
     private Node head;
 
-    protected static class Node {
+    protected static class Node implements Serializable {
+        private static final long serialVersionUID = -1658099808275491156L;
         public double x;
         public double y;
         public Node prev;
