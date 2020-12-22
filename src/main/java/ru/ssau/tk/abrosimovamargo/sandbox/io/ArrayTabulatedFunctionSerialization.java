@@ -25,7 +25,8 @@ public class ArrayTabulatedFunctionSerialization {
         }
         try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(fileArray))) {
             TabulatedFunction deserializedArray = FunctionsIO.deserialize(in);
-            TabulatedFunction deserializedFirstDerivative = FunctionsIO.deserialize(in);
+            TabulatedFunction deserializedFirstDerivative;
+            deserializedFirstDerivative = FunctionsIO.deserialize(in);
             TabulatedFunction deserializedSecondDerivative = FunctionsIO.deserialize(in);
             System.out.println(deserializedArray.toString());
             System.out.println(deserializedFirstDerivative.toString());
@@ -35,5 +36,5 @@ public class ArrayTabulatedFunctionSerialization {
         }
     }
 }
-}
+
 
