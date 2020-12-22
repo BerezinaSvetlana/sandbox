@@ -8,7 +8,7 @@ import ru.ssau.tk.abrosimovamargo.sandbox.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.LinkedListTabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.TabulatedFunction;
 
-public class LinkedFunctionFactoryTest {
+public class TabulatedFunctionFactoryTest {
 
     @Test
     public void testCreate() {
