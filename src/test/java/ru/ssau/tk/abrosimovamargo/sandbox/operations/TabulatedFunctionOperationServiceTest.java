@@ -20,9 +20,9 @@ public class TabulatedFunctionOperationServiceTest {
     private final TabulatedFunctionOperationService operationServiceList = new TabulatedFunctionOperationService(new LinkedListTabulatedFunctionFactory());
     private final TabulatedFunction testArrayFunction = new ArrayTabulatedFunction(valuesX, valuesY);
     private final TabulatedFunction testListFunction = new LinkedListTabulatedFunction(valuesX, valuesYForList);
-    double[] firstX = new double[]{1., 2., 3., 4.};
-    double[] firstY = new double[]{2., 4., 6., 8.};
-    double[] secondY = new double[]{1., 2., 3., 4.};
+    private double[] firstX = new double[]{1., 2., 3., 4.};
+    private double[] firstY = new double[]{2., 4., 6., 8.};
+    private double[] secondY = new double[]{1., 2., 3., 4.};
 
     ArrayTabulatedFunction getTestArray() {
         return new ArrayTabulatedFunction(valuesX, valuesY);
