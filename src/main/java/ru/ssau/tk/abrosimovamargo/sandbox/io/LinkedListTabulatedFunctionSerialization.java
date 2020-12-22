@@ -20,9 +20,9 @@ public class LinkedListTabulatedFunctionSerialization {
         try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(outList));
              BufferedInputStream in = new BufferedInputStream(new FileInputStream(outList))) {
 
-          /*  FunctionsIO.serialize(out, listFunction);
+            FunctionsIO.serialize(out, listFunction);
             FunctionsIO.serialize(out, listFunction1);
-            FunctionsIO.serialize(out, listFunction2);*/
+            FunctionsIO.serialize(out, listFunction2);
 
             TabulatedFunction resultList = FunctionsIO.deserialize(in);
             TabulatedFunction resultList1 = FunctionsIO.deserialize(in);
