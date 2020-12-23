@@ -24,11 +24,11 @@ public class TabulatedFunctionOperationServiceTest {
     private double[] firstY = new double[]{2., 4., 6., 8.};
     private double[] secondY = new double[]{1., 2., 3., 4.};
 
-    ArrayTabulatedFunction getTestArray() {
+    public ArrayTabulatedFunction getTestArray() {
         return new ArrayTabulatedFunction(valuesX, valuesY);
     }
 
-    LinkedListTabulatedFunction getTestList() {
+    public LinkedListTabulatedFunction getTestList() {
         return new LinkedListTabulatedFunction(valuesX, valuesYForList);
     }
 
