@@ -1,5 +1,6 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.operations;
 
+import ru.ssau.tk.abrosimovamargo.sandbox.concurrent.SynchronizedTabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.Point;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.TabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.factory.*;
@@ -40,5 +41,13 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
 
         return factory.create(xValues, yValues);
     }
+    public TabulatedFunction deriveSynchronously(TabulatedFunction function) {
+        Object mu = new Object();
 
+        if (function instanceof SynchronizedTabulatedFunction) {
+            return ((SynchronizedTabulatedFunction) function).doSynchronously(this::derive);
+        }
+        SynchronizedTabulatedFunction syncFunc = new SynchronizedTabulatedFunction(function, mu);
+        return syncFunc.doSynchronously(this::derive);
+    }
 }

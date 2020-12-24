@@ -1,4 +1,4 @@
-package ru.ssau.tk.abrosimovamargo.sandbox.functions.concurrent;
+package ru.ssau.tk.abrosimovamargo.sandbox.concurrent;
 
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.Point;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.TabulatedFunction;
@@ -11,6 +11,16 @@ import java.util.Objects;
 public class SynchronizedTabulatedFunction implements TabulatedFunction {
     private final TabulatedFunction tabulatedFunction;
     private final Object mutex;
+
+    public interface Operation<T> {
+        T apply(SynchronizedTabulatedFunction synchronizedTabulatedFunction);
+    }
+
+    public <T> T doSynchronously(Operation<? extends T> operation) {
+        synchronized (mutex) {
+            return operation.apply(this);
+        }
+    }
 
     public SynchronizedTabulatedFunction(TabulatedFunction tabulatedFunction, Object mutex) {
         this.tabulatedFunction = tabulatedFunction;

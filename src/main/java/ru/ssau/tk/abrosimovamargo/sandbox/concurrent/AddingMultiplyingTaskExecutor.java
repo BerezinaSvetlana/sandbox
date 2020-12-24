@@ -1,4 +1,4 @@
-package ru.ssau.tk.abrosimovamargo.sandbox.functions.concurrent;
+package ru.ssau.tk.abrosimovamargo.sandbox.concurrent;
 
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.ConstantFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.LinkedListTabulatedFunction;

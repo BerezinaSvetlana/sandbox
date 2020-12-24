@@ -1,6 +1,7 @@
-package ru.ssau.tk.abrosimovamargo.sandbox.functions.concurrent;
+package ru.ssau.tk.abrosimovamargo.sandbox.concurrent;
 
 import org.testng.annotations.Test;
+import ru.ssau.tk.abrosimovamargo.sandbox.concurrent.SynchronizedTabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.LinkedListTabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.Point;
@@ -137,6 +138,12 @@ public class SynchronizedTabulatedFunctionTest {
         assertEquals(getSynchronizedArray().apply(4), 2.1, delta);
         assertEquals(getSynchronizedArray().apply(5), 1.9, delta);
         assertEquals(getSynchronizedArray().apply(6), 1.8, delta);
+    }
+    @Test
+    public void testDoSynchronously() {
+        SynchronizedTabulatedFunction synchronizedTabulatedFunction = getSynchronizedList();
+        assertEquals((int) synchronizedTabulatedFunction.doSynchronously(SynchronizedTabulatedFunction::getCount), 5);
+        assertEquals((double) synchronizedTabulatedFunction.doSynchronously(SynchronizedTabulatedFunction::leftBound), 1.1);
     }
 
 }
