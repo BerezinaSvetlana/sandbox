@@ -9,27 +9,21 @@ import java.io.*;
 
 public class TabulatedFunctionFileInputStream {
     public static void main(String[] args) {
-        File arrayFile = new File("input/binary function.bin");
-        LinkedListTabulatedFunctionFactory listFact = new LinkedListTabulatedFunctionFactory();
-        ArrayTabulatedFunctionFactory arrayFact = new ArrayTabulatedFunctionFactory();
-        try (BufferedInputStream inArray = new BufferedInputStream(new FileInputStream(arrayFile))) {
-            TabulatedFunction arrayFunction = FunctionsIO.readTabulatedFunction(inArray, arrayFact);
-
-            System.out.println(arrayFunction.toString());
-        } catch (IOException err) {
-            err.printStackTrace();
-
+        try (BufferedInputStream in = new BufferedInputStream(new FileInputStream("input/binary function.bin"))) {
+            TabulatedFunction newFunction = FunctionsIO.readTabulatedFunction(in, new ArrayTabulatedFunctionFactory());
+            System.out.println(newFunction.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         try {
-            BufferedReader inList = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Введите размер и значения функции");
-            TabulatedFunction listFunction = FunctionsIO.readTabulatedFunction(inList, listFact);
-
-            TabulatedDifferentialOperator diffList = new TabulatedDifferentialOperator(listFact);
-            System.out.println(diffList.derive(listFunction).toString());
-
-        } catch (IOException err) {
-            err.printStackTrace();
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Введите размер и значения функции:");
+            TabulatedFunction function = FunctionsIO.readTabulatedFunction(in, new LinkedListTabulatedFunctionFactory());
+            TabulatedDifferentialOperator differentialOperator = new TabulatedDifferentialOperator(new LinkedListTabulatedFunctionFactory());
+            TabulatedFunction derivedFunction = differentialOperator.derive(function);
+            System.out.println(derivedFunction.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

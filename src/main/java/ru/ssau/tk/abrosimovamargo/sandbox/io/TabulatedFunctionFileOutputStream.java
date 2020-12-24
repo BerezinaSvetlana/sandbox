@@ -3,30 +3,28 @@ package ru.ssau.tk.abrosimovamargo.sandbox.io;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.LinkedListTabulatedFunction;
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.TabulatedFunction;
+import ru.ssau.tk.abrosimovamargo.sandbox.functions.factory.ArrayTabulatedFunctionFactory;
+import ru.ssau.tk.abrosimovamargo.sandbox.functions.factory.LinkedListTabulatedFunctionFactory;
 
 import java.io.*;
 
 public class TabulatedFunctionFileOutputStream {
     public static void main(String[] args) {
-        File fileArray = new File("output/array function.bin");
-        File fileList = new File("output/linked list function.bin");
+        try (BufferedOutputStream listOut = new BufferedOutputStream(new FileOutputStream("output/linked list function.bin"));
+             BufferedOutputStream arrayOut = new BufferedOutputStream(new FileOutputStream("output/array function.bin"))) {
 
-        double[] xValue = new double[]{1, 2, 3, 4, 5};
-        double[] yValue = new double[]{6, 7, 8, 9, 10};
+            double[] xValues = new double[]{1, 2, 3, 4, 5};
+            double[] yValues = new double[]{6, 7, 8, 9, 10};
 
-        TabulatedFunction functionList = new LinkedListTabulatedFunction(xValue, yValue);
-        TabulatedFunction functionArray = new ArrayTabulatedFunction(xValue, yValue);
-
-        try (BufferedWriter outArray = new BufferedWriter(
-                new FileWriter(fileArray));
-             BufferedWriter outList = new BufferedWriter(
-                     new FileWriter(fileList))) {
-
-            FunctionsIO.writeTabulatedFunction(outArray, functionArray);
-            FunctionsIO.writeTabulatedFunction(outList, functionList);
-
+            ArrayTabulatedFunctionFactory arrayFactory = new ArrayTabulatedFunctionFactory();
+            LinkedListTabulatedFunctionFactory linkedListFactory = new LinkedListTabulatedFunctionFactory();
+            TabulatedFunction arrayFunction = arrayFactory.create(xValues, yValues);
+            TabulatedFunction linkedListFunction = linkedListFactory.create(xValues, yValues);
+            FunctionsIO.writeTabulatedFunction(arrayOut, arrayFunction);
+            FunctionsIO.writeTabulatedFunction(listOut, linkedListFunction);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
