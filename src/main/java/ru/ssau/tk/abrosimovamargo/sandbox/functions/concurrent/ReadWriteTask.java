@@ -2,7 +2,7 @@ package ru.ssau.tk.abrosimovamargo.sandbox.functions.concurrent;
 
 import ru.ssau.tk.abrosimovamargo.sandbox.functions.TabulatedFunction;
 
-public class ReadWriteTask implements Runnable{
+public class ReadWriteTask implements Runnable {
     private final TabulatedFunction function;
 
     public ReadWriteTask(TabulatedFunction function) {
