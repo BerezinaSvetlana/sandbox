@@ -1,6 +1,10 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.exceptions;
 
-public class InterpolationException extends RuntimeException{
+import java.io.Serializable;
+
+public class InterpolationException extends RuntimeException implements Serializable {
+    private static final long serialVersionUID = 3303545512972126588L;
+
     public InterpolationException() {
     }
 

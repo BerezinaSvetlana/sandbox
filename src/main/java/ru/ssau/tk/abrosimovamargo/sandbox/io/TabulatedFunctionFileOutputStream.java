@@ -8,8 +8,8 @@ import java.io.*;
 
 public class TabulatedFunctionFileOutputStream {
     public static void main(String[] args) {
-        File fileArray = new File("output/array function.txt");
-        File fileList = new File("output/linked list function.txt");
+        File fileArray = new File("output/array function.bin");
+        File fileList = new File("output/linked list function.bin");
 
         double[] xValue = new double[]{1, 2, 3, 4, 5};
         double[] yValue = new double[]{6, 7, 8, 9, 10};
