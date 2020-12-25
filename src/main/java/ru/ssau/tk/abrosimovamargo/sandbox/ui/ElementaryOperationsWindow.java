@@ -342,7 +342,7 @@ public class ElementaryOperationsWindow extends JFrame {
 
     public void designButton(JButton button, String name) {
         button.setText(name);
-        button.setBackground(Color.blue);
+        button.setBackground(Color.cyan);
         button.setFocusPainted(false);
     }
 
@@ -354,12 +354,12 @@ public class ElementaryOperationsWindow extends JFrame {
         designedPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
         designedPane.getViewport().setBackground(new Color(255, 248, 224));  //фон панели
         designedTable.setBackground(new Color(255, 248, 224)); //фон полей таблицы
-        designedTable.getTableHeader().setBackground(Color.pink);
-        designedTable.getTableHeader().setForeground(Color.DARK_GRAY);
+        designedTable.getTableHeader().setBackground(Color.cyan);
+        designedTable.getTableHeader().setForeground(Color.BLACK);
         designedTable.setSelectionBackground(new Color(220, 194, 184));
         designedTable.getTableHeader().setFont(new Font("VVV", Font.BOLD, 14));
         designedPane.setBackground(new Color(235, 205, 193));
-        designedPane.setForeground(Color.DARK_GRAY);
+        designedPane.setForeground(Color.BLACK);
         designedPane.setViewportView(designedTable);
     }
 

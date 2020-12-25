@@ -44,8 +44,8 @@ public class TabulatedFunctionWindow extends JDialog {
         createButton.setEnabled(false);
         inputButton.setFocusPainted(false);
         createButton.setFocusPainted(false);
-        inputButton.setBackground(Color.blue);
-        createButton.setBackground(Color.blue);
+        inputButton.setBackground(Color.cyan);
+        createButton.setBackground(Color.cyan);
     }
 
     void compose() {
@@ -162,11 +162,11 @@ public class TabulatedFunctionWindow extends JDialog {
         designedPane.getViewport().setBackground(Color.white);  //фон панели
         designedTable.setBackground(Color.white); //фон полей таблицы
         designedTable.getTableHeader().setBackground(Color.white);
-        designedTable.getTableHeader().setForeground(Color.DARK_GRAY);
+        designedTable.getTableHeader().setForeground(Color.BLACK);
         designedTable.setSelectionBackground(new Color(220, 194, 184));
         designedTable.getTableHeader().setFont(new Font("VVV", Font.BOLD, 14));
         designedPane.setBackground(new Color(235, 205, 193));
-        designedPane.setForeground(Color.DARK_GRAY);
+        designedPane.setForeground(Color.BLACK);
         designedPane.setViewportView(designedTable);
     }
 }
