@@ -14,6 +14,7 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.util.List;
 
 public class TabulatedFunctionWindow extends JDialog {
     List<Double> xValues = new ArrayList<>();
