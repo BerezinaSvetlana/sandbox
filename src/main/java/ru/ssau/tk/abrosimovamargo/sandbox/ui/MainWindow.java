@@ -29,9 +29,9 @@ public class MainWindow extends JFrame {
     private TabulatedFunctionFactory factory;
 
     public MainWindow() {
-        setTitle("Главное окно");
+        setTitle("Калькулятор");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(0, 0, 1130, 840);
+        setBounds(0, 0, 1000, 540);
         setContentPane(new BgPanel());
         compose();
         this.factory = new ArrayTabulatedFunctionFactory();
@@ -193,7 +193,6 @@ public class MainWindow extends JFrame {
                 im = ImageIO.read(new File("photo/2.jpg"));
             } catch (IOException e) {
             }
-
             g.drawImage(im, 190, -50, null);
         }
     }

@@ -44,8 +44,8 @@ public class TabulatedFunctionWindow extends JDialog {
         createButton.setEnabled(false);
         inputButton.setFocusPainted(false);
         createButton.setFocusPainted(false);
-        inputButton.setBackground(Color.pink);
-        createButton.setBackground(Color.pink);
+        inputButton.setBackground(Color.blue);
+        createButton.setBackground(Color.blue);
     }
 
     void compose() {
@@ -156,12 +156,12 @@ public class TabulatedFunctionWindow extends JDialog {
     public void designTable(JTable designedTable, JScrollPane designedPane) {
         UIManager.put("ScrollPane.thumb", new ColorUIResource(Color.BLACK));
         designedPane.setUI(new BasicScrollPaneUI());
-        UIManager.put("ScrollBar.thumb", new ColorUIResource(new Color(186, 177, 173, 225)));
+        UIManager.put("ScrollBar.thumb", new ColorUIResource( Color.white));
         designedPane.getVerticalScrollBar().setUI(new BasicScrollBarUI());
         designedPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
-        designedPane.getViewport().setBackground(new Color(255, 248, 224));  //фон панели
-        designedTable.setBackground(new Color(255, 248, 224)); //фон полей таблицы
-        designedTable.getTableHeader().setBackground(Color.pink);
+        designedPane.getViewport().setBackground(Color.white);  //фон панели
+        designedTable.setBackground(Color.white); //фон полей таблицы
+        designedTable.getTableHeader().setBackground(Color.white);
         designedTable.getTableHeader().setForeground(Color.DARK_GRAY);
         designedTable.setSelectionBackground(new Color(220, 194, 184));
         designedTable.getTableHeader().setFont(new Font("VVV", Font.BOLD, 14));

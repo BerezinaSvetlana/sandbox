@@ -37,7 +37,7 @@ public class MathFunctionWindow extends JDialog {
     public void designButton(JButton button, int width, int height, String name) {
         button.setText(name);
         button.setPreferredSize(new Dimension(width, height));
-        button.setBackground(Color.pink);
+        button.setBackground(Color.white);
         button.setForeground(Color.DARK_GRAY);
         button.setFocusPainted(false);
     }

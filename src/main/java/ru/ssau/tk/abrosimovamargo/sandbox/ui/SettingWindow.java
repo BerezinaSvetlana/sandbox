@@ -21,7 +21,7 @@ public class SettingWindow extends JDialog {
         setModal(true);
         this.factory = factory;
         setTitle("Выбрать тип фабрики");
-        setSize(300, 100);
+        setSize(300, 150);
         fillMap();
         compose();
         addButtonListeners();
