@@ -49,7 +49,7 @@ public class SettingWindow extends JDialog {
                         .addComponent(functionComboBox)
                         .addComponent(okButton)
                 ));
-        okButton.setBackground(Color.pink);
+        okButton.setBackground(Color.cyan);
         okButton.setFocusPainted(false);
     }
 

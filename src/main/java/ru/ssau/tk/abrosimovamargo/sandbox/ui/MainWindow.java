@@ -54,7 +54,7 @@ public class MainWindow extends JFrame {
         JScrollPane pane = new JScrollPane();
         designTable(table, pane);
         JPanel northPanel = new JPanel();
-        northPanel.setBackground(new Color(31, 21, 12));
+        northPanel.setBackground(Color.BLACK);
         designButton(inputButtonTable, "Таблица");
         inputButtonTable.addActionListener(event -> {
                     try {
@@ -156,7 +156,7 @@ public class MainWindow extends JFrame {
 
     public void designButton(JButton button, String name) {
         button.setText(name);
-        button.setBackground(Color.pink);
+        button.setBackground(Color.cyan);
         button.setForeground(Color.DARK_GRAY);
         button.setFont(new Font("VVV", Font.BOLD, 14));
         button.setFocusPainted(false);
@@ -170,12 +170,12 @@ public class MainWindow extends JFrame {
         designedPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
         designedPane.getViewport().setBackground(new Color(255, 248, 224));  //фон панели
         designedTable.setBackground(new Color(255, 248, 224)); //фон полей таблицы
-        designedTable.getTableHeader().setBackground(Color.pink);
-        designedTable.getTableHeader().setForeground(Color.DARK_GRAY);
+        designedTable.getTableHeader().setBackground(Color.cyan);
+        designedTable.getTableHeader().setForeground(Color.BLACK);
         designedTable.setSelectionBackground(new Color(220, 194, 184));
         designedTable.getTableHeader().setFont(new Font("VVV", Font.BOLD, 14));
         designedPane.setBackground(new Color(235, 205, 193));
-        designedPane.setForeground(Color.DARK_GRAY);
+        designedPane.setForeground(Color.BLACK);
         designedPane.setViewportView(designedTable);
     }
 
