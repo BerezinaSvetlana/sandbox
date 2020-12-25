@@ -1,14 +1,13 @@
 package ru.ssau.tk.abrosimovamargo.sandbox.ui;
 
-import ru.ssau.tk.abrosimovamargo.sandbox.functions.TabulatedFunction;
-
 import javax.swing.table.AbstractTableModel;
+import java.util.List;
 
-public class TableModelMainWindow extends AbstractTableModel {
-    private static final int INDEX_COLUMN_NUMBER = 0;
-    private static final int X_COLUMN = 1;
-    private static final int Y_COLUMN = 2;
-    private TabulatedFunction function;
+public class TableModel  extends AbstractTableModel {
+    private static final int X_COLUMN = 0;
+    private static final int Y_COLUMN = 1;
+    private List<Double> xValues;
+    private List<Double> yValues;
 
     public TableModelMainWindow() {
     }
